@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registered Students</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to right, #dbeafe, #f0fdf4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 26px;
+      color: #2c3e50;
+    }
+
+    .controls {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .back-btn {
+      padding: 8px 16px;
+      background-color: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: #2563eb;
+    }
+
+    table {
+      width: 100%;
+      max-width: 1000px;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #f3f4f6;
+      color: #111827;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #f0fdf4;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+      }
+
+      table {
+        font-size: 12px;
+      }
+
+      th, td {
+        padding: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Registered Students</h2>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search by name or roll number..." onkeyup="searchTable()" />
+    <a href="index.html" class="back-btn">← Back to Registration</a>
+  </div>
+
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>Roll No</th>
+        <th>Name</th>
+        <th>Class</th>
+        <th>DOB</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Gender</th>
+        <th>Dept</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Sample static data -->
+      <tr>
+        <td>1001</td>
+        <td>Alice Sharma</td>
+        <td>10A</td>
+        <td>2006-04-21</td>
+        <td>alice@gmail.com</td>
+        <td>9876543210</td>
+        <td>Female</td>
+        <td>CSE</td>
+      </tr>
+      <tr>
+        <td>1002</td>
+        <td>Rahul Mehta</td>
+        <td>10B</td>
+        <td>2005-08-11</td>
+        <td>rahul@gmail.com</td>
+        <td>9876543211</td>
+        <td>Male</td>
+        <td>ECE</td>
+      </tr>
+      <tr>
+        <td>1003</td>
+        <td>Priya Verma</td>
+        <td>11A</td>
+        <td>2006-01-30</td>
+        <td>priya@gmail.com</td>
+        <td>9876543212</td>
+        <td>Female</td>
+        <td>MECH</td>
+      </tr>
+      <!-- Add more rows dynamically from backend if needed -->
+    </tbody>
+  </table>
+
+  <script>
+    function searchTable() {
+      let input = document.getElementById("search").value.toLowerCase();
+      let rows = document.querySelectorAll("#studentTable tbody tr");
+
+      rows.forEach(row => {
+        let text = row.innerText.toLowerCase();
+        row.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+  </script>
+</body>
+</html>
